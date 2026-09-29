@@ -107,13 +107,13 @@ Web dinámica de tema libre (excepto política o religión) con blog/novedades y
 
 ### Tipografía
 
-**Titulo:** Ryde.
+**Titulo:** Rye.
 
 **Cuerpo:** Source Sans 3.
 
 | Rol    | Nombre        |
 | ------ | ------------- |
-| Titulo | Ryde          |
+| Titulo | Rye          |
 | Cuerpo | Source Sans 3 |
 
 ---
