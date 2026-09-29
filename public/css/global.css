@@ -1,0 +1,33 @@
+:root {
+  --color-primary: #6D1A2B;
+  --color-accent: #F2E6D0;
+  --color-background: #1A1416;
+  --color-body-secundary: #8C7F7A;
+  --color-detail: #C9A24B;
+
+  --font-title: 'Rye', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-background);
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--color-primary);
+}
+
+p, a, li, span {
+  font-family: var(--font-body);
+  color: var(--color-accent);
+}
