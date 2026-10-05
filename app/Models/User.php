@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
-#[Table("usuario")]
+#[Table("usuarios")]
 class User extends Model
 {
     protected $primaryKey = "id";
