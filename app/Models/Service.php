@@ -18,7 +18,7 @@ class Service extends Model
     public function tattoArtists()
     {
         return $this->belongsToMany(
-            TattoArtist::class,
+            TattooArtist::class,
             "servicio_tatuador",
             "servicio_id",
             "tatuador_id"

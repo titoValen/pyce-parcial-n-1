@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
-#[Table("posts")]
-class Posts extends Model
+#[Table("post")]
+class Post extends Model
 {
     protected $primaryKey = "id";
     protected $fillable = ["titulo", "slug","extracto", "contenido", "imagen", "publicado", "usuario_id"];
@@ -22,7 +22,7 @@ class Posts extends Model
     public function categories()
     {
         return $this->belongsToMany(
-            Categorie::class,
+            Category::class,
             "categoria_post",
             "post_id",
             "categoria_id"

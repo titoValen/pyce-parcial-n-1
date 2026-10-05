@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
 
 #[Table("tatuadores")]
-class TattoArtist extends Model
+class TattooArtist extends Model
 {
     protected $primaryKey = "id";
     protected $fillable = ["nombre", "especialidad", "bio", "foto"];
