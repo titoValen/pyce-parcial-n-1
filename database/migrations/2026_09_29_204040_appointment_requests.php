@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('telefono');
             $table->dateTime('fecha_tentativa');
             $table->text('mensaje')->nullable();
-            $table->boolean('estado')->default('pendiente');
+            $table->string('estado')->default('pendiente');
             $table->timestamps();
         });
     }

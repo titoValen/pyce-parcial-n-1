@@ -11,7 +11,6 @@ class AppointmentRequest extends Model
     protected $primaryKey = "id";
     protected $fillable = ["nombre", "email","telefono", "fecha_tentativa", "mensaje", "estado", "servicio_id"];
     protected $casts = [
-        "estado" => "boolean",
         "fecha_tentativa" => "datetime"
     ];
 
