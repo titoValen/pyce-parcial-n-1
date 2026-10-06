@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $title ? $title . ' - ' : '' }}{{ 'Old Ink School' }}</title>
+  <title>{{ isset($title) ? $title . ' | Old Ink School' : 'Old Ink School' }}</title>
 
   {{-- Google Fonts --}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,19 +15,39 @@
 
   {{-- CSS --}}
   <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/layout.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/services.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
 </head>
 
-<body>
-  <header>
-    <h1>Bienvenido a la Escuela de Tinta Antigua</h1>
+<body id="top">
+  <a class="skip-link" href="#main-content">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="wordmark" href="{{ route('home') }}" aria-label="Old Ink School, inicio">
+        <span class="wordmark-title">Old Ink <span>School</span></span>
+        <span class="wordmark-caption">Estudio de tatuajes</span>
+      </a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="site-nav-link {{ request()->routeIs('home') ? 'is-active' : '' }}" href="{{ route('home') }}">Inicio</a>
+        <a class="site-nav-link {{ request()->routeIs('services*') ? 'is-active' : '' }}" href="{{ route('services') }}">Servicios</a>
+        <a class="site-nav-link {{ request()->routeIs('blog', 'blog.category', 'blog.show') ? 'is-active' : '' }}" href="{{ route('blog') }}">Blog</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main id="main-content" class="site-main">
     {{ $slot }}
   </main>
 
-  <footer>
-    <p>&copy; 2026 Old Ink School. Todos los derechos reservados.</p>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <a class="footer-wordmark" href="{{ route('home') }}">Old Ink School</a>
+      <p>&copy; {{ now()->year }} Old Ink School</p>
+      <a class="back-to-top" href="#top">Volver arriba</a>
+    </div>
   </footer>
 </body>
 
