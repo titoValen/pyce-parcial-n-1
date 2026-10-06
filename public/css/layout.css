@@ -1,0 +1,134 @@
+.site-header {
+  border-bottom: 1px solid var(--color-line);
+}
+
+.site-header-inner,
+.site-footer-inner {
+  width: min(calc(100% - 3rem), var(--content-width));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.site-header-inner {
+  min-height: 94px;
+}
+
+.wordmark {
+  display: grid;
+  gap: 0.08rem;
+  line-height: 1.1;
+}
+
+.wordmark-title,
+.footer-wordmark {
+  color: var(--color-accent);
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+}
+
+.wordmark-title span {
+  color: var(--color-detail);
+}
+
+.wordmark-caption {
+  color: var(--color-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.1rem;
+}
+
+.site-nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.site-nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-detail);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link.is-active {
+  color: var(--color-accent);
+}
+
+.site-nav-link:hover::after,
+.site-nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.site-main {
+  width: min(calc(100% - 3rem), var(--content-width));
+  flex: 1;
+  margin: 0 auto;
+}
+
+.site-footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.site-footer-inner {
+  min-height: 100px;
+  color: var(--color-muted);
+  font-size: 0.86rem;
+}
+
+.footer-wordmark {
+  font-size: 1rem;
+}
+
+.back-to-top {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 760px) {
+  .site-header-inner,
+  .site-footer-inner,
+  .site-main {
+    width: min(calc(100% - 2rem), var(--content-width));
+  }
+
+  .site-header-inner {
+    min-height: 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 1.1rem 0;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .site-footer-inner {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    padding: 1.5rem 0;
+  }
+}
