@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('contenido');
             $table->string('imagen')->nullable();
             $table->boolean('publicado')->default(false);
-            $table->foreignId('usuario_id')->constrained('usuario')->cascadeOnDelete();
+            $table->foreignId('usuario_id')->constrained('usuarios')->cascadeOnDelete();
             $table->timestamps();
         });
     }
