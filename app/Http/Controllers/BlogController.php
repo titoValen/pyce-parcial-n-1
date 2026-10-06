@@ -30,6 +30,7 @@ class BlogController extends Controller
 
         return view('blog.index', [
             'posts' => $posts,
+            'category' => $category,
         ]);
     }
 
@@ -44,3 +45,4 @@ class BlogController extends Controller
         ]);
     }
 }
+
