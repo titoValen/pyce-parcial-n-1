@@ -15,6 +15,11 @@ class Service extends Model
         "precio_base" => "decimal:2",
     ];
 
+    public function AppointmentRequests()
+    {
+        return $this->hasMany(AppointmentRequest::class, "servicio_id");
+    }
+
     public function tattoArtists()
     {
         return $this->belongsToMany(
