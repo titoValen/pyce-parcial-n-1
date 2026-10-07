@@ -10,13 +10,14 @@ class BlogController extends Controller
 {
     public function index(): View
     {
-        $post = Post::where('publicado', true)
+        $posts = Post::where('publicado', true)
             ->latest()
             ->with('categories')
             ->paginate(6);
 
         return view('blog.index', [
-            'posts' => $post,
+            'posts' => $posts,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -31,18 +32,19 @@ class BlogController extends Controller
         return view('blog.index', [
             'posts' => $posts,
             'category' => $category,
+            'categories' => Category::all(),
         ]);
     }
 
-    public function show(Post $post): View
+    public function show(int $id): View
     {
-        abort_unless($post->publicado, 404);
+        $posts = Post::where('publicado', true)
+            ->with('categories')
+            ->findOrFail($id);
 
-        $post->load('categories');
 
         return view('blog.show', [
-            'post' => $post,
+            'post' => $posts,
         ]);
     }
 }
-
