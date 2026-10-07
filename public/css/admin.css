@@ -327,6 +327,160 @@
   margin-top: 1.5rem;
 }
 
+.appointment-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.appointment-filters a {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--color-line);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.appointment-filters a:hover,
+.appointment-filters a.is-active {
+  border-color: var(--color-detail);
+  background: var(--color-detail);
+  color: var(--color-background);
+}
+
+.admin-table-caption {
+  padding: 0.9rem 1rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.appointment-client-link {
+  color: var(--color-accent);
+}
+
+.appointment-client-link:hover {
+  color: var(--color-detail);
+}
+
+.appointment-status {
+  display: inline-block;
+  padding: 0.25rem 0.55rem;
+  border-radius: 2px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.appointment-status--pendiente {
+  background: #eee7d9;
+  color: #68552e;
+}
+
+.appointment-status--confirmado {
+  background: #e1eadb;
+  color: #34512c;
+}
+
+.appointment-status--cancelado {
+  background: #f2dfdc;
+  color: #8a3028;
+}
+
+.appointment-actions {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 12rem;
+}
+
+.appointment-state-form {
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.appointment-state-form select,
+.appointment-detail-state-form select {
+  min-height: 40px;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-background);
+  color: var(--color-accent);
+  font: inherit;
+}
+
+.appointment-update-button {
+  min-height: 40px;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.85rem;
+}
+
+.appointment-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+}
+
+.appointment-details dt {
+  margin-bottom: 0.35rem;
+  color: var(--color-muted);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.appointment-details dd {
+  overflow-wrap: anywhere;
+  color: var(--color-accent);
+}
+
+.appointment-details dd a {
+  color: var(--color-detail);
+}
+
+.appointment-message {
+  grid-column: 1 / -1;
+}
+
+.appointment-message dd {
+  white-space: pre-line;
+}
+
+.appointment-detail-state-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.appointment-detail-state-form label {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.appointment-detail-actions {
+  justify-content: space-between;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .auth-actions {
   display: flex;
   flex-wrap: wrap;
@@ -362,6 +516,19 @@
 
   .admin-page .pagination {
     flex-wrap: wrap;
+  }
+
+  .appointment-details {
+    grid-template-columns: 1fr;
+  }
+
+  .appointment-message {
+    grid-column: auto;
+  }
+
+  .appointment-detail-state-form {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .auth-actions {
