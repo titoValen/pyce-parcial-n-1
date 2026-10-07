@@ -38,6 +38,8 @@
                     href="{{ route('services.index') }}">Servicios</a>
                 <a class="site-nav-link {{ request()->routeIs('blog', 'blog.category', 'blog.show') ? 'is-active' : '' }}"
                     href="{{ route('blog.index') }}">Blog</a>
+                <a class="site-nav-link {{ request()->routeIs('appointments*') ? 'is-active' : '' }}"
+                    href="{{ route('appointments.create') }}">Turnos</a>
             </nav>
         </div>
     </header>
