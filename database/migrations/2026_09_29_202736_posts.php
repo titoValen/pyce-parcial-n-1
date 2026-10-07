@@ -4,10 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Crea y elimina la tabla de publicaciones.
+ */
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Ejecuta las migraciones
      */
     public function up(): void
     {
@@ -25,7 +28,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Revierte las migraciones
      */
     public function down(): void
     {
