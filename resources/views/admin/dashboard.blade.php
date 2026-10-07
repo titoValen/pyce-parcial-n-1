@@ -9,5 +9,8 @@
         <a class="button button-outline admin-dashboard-link" href="{{ route('admin.services.index') }}">
             Administrar servicios
         </a>
+        <a class="button button-outline admin-dashboard-link" href="{{ route('admin.appointments.index') }}">
+            Solicitudes pendientes: {{ $pendingAppointmentsCount }}
+        </a>
     </section>
 </x-layout.admin>
