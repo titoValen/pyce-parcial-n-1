@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\AppointmentRequest;
 use Illuminate\View\View;
 
+/**
+ * Gestiona la página principal del área administrativa.
+ */
 class DashboardController extends Controller
 {
     /**

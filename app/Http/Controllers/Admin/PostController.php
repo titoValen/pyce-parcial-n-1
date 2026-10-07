@@ -10,8 +10,12 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
+/**
+ * Gestiona las operaciones administrativas de publicaciones.
+ */
 class PostController extends Controller
 {
+    /** Lista las publicaciones y sus categorías. */
     public function index(): View
     {
         return view('admin.posts.index', [
@@ -19,6 +23,7 @@ class PostController extends Controller
         ]);
     }
 
+    /** Muestra el formulario para crear una publicación. */
     public function create(): View
     {
         return view('admin.posts.create', [
@@ -27,6 +32,7 @@ class PostController extends Controller
         ]);
     }
 
+    /** Valida y almacena una publicación nueva. */
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate($this->validationRules(), $this->validationMessages());
@@ -45,6 +51,7 @@ class PostController extends Controller
             ->with('success', 'Post creado correctamente.');
     }
 
+    /** Muestra el formulario de edición de una publicación. */
     public function edit(Post $post): View
     {
         $post->load('categories');
@@ -55,6 +62,7 @@ class PostController extends Controller
         ]);
     }
 
+    /** Valida y actualiza una publicación existente. */
     public function update(Request $request, Post $post): RedirectResponse
     {
         $validated = $request->validate(
@@ -75,6 +83,7 @@ class PostController extends Controller
             ->with('success', 'Post actualizado correctamente.');
     }
 
+    /** Elimina una publicación. */
     public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
@@ -84,6 +93,12 @@ class PostController extends Controller
             ->with('success', 'Post eliminado correctamente.');
     }
 
+    /**
+     * Reglas de validación para los campos editables de la publicación.
+     *
+     * @param Post|null $post Publicación excluida de la regla de slug único.
+     * @return array<string, array<int, string|\Illuminate\Validation\Rules\Unique>>
+     */
     private function validationRules(?Post $post = null): array
     {
         return [
@@ -102,6 +117,11 @@ class PostController extends Controller
         ];
     }
 
+    /**
+     * Mensajes de validación en español.
+     *
+     * @return array<string, string>
+     */
     private function validationMessages(): array
     {
         return [
