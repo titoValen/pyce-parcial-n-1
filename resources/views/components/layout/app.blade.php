@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/services.css') }}">
     <link rel="stylesheet" href="{{ asset('css/blog.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 
 <body id="top">
@@ -31,7 +32,8 @@
                 <span class="wordmark-caption">Estudio de tatuajes</span>
             </a>
             <nav class="site-nav" aria-label="Navegación principal">
-                <a class="site-nav-link {{ request()->routeIs('home') ? 'is-active' : '' }}" href="{{ route('home') }}">
+                <a class="site-nav-link {{ request()->routeIs('home') ? 'is-active' : '' }}"
+                    href="{{ route('home') }}">
                     Inicio
                 </a>
                 <a class="site-nav-link {{ request()->routeIs('services*') ? 'is-active' : '' }}"
@@ -40,6 +42,19 @@
                     href="{{ route('blog.index') }}">Blog</a>
                 <a class="site-nav-link {{ request()->routeIs('appointments*') ? 'is-active' : '' }}"
                     href="{{ route('appointments.create') }}">Turnos</a>
+                @auth
+                    <a class="site-nav-link {{ request()->routeIs('admin.dashboard') ? 'is-active' : '' }}"
+                        href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    <form action="{{ route('admin.logout') }}" method="post">
+                        @csrf
+                        <button class="site-nav-link site-nav-logout" type="submit">
+                            {{ auth()->user()->nombre }} (Cerrar sesión)
+                        </button>
+                    </form>
+                @else
+                    <a class="site-nav-link {{ request()->routeIs('admin.login') ? 'is-active' : '' }}"
+                        href="{{ route('admin.login') }}">Iniciar sesión</a>
+                @endauth
             </nav>
         </div>
     </header>
