@@ -1,188 +1,130 @@
-# Old Onk School
+# Old Ink School
 
-sitio web dinámico de un estudio de tatuajes de estética _old school_. Incluye una parte pública (servicios, blog y solicitud de turno) y un panel de adminstración con autenticación propia.
+Sitio web para un estudio de tatuajes de estética tradicional. Incluye un catálogo público de servicios, un blog y un formulario para solicitar turnos, además de un panel de administración con autenticación propia.
 
-> Trabajo práctico: **Portales y Comercio Electrónico – Primer Parcial**.
-> Profesor: Santiago Gallino.
-> Tecnologías: PHP, Laravel (versión actual), Blade, MySQL, CSS personalizado.
+Proyecto académico para **Portales y Comercio Electrónico — Primer Parcial**.
 
----
-
-## 1. Consigna resumida
-
-Web dinámica de tema libre (excepto política o religión) con blog/novedades y un servicio/producto para contratar. Se compone de dos partes:
-
-### Sitio (usuarios comunes)
-
-- [ ] Home que presente el estudio.
-- [ ] Servicios que puedan contratar (sin carrito de compras).
-- [ ] Sección de blog/novedades.
-
-### Admin
-
-- [ ] Autenticación **propia**. Está **prohibido** usar la interfaz de autenticación y los controllers que provee Laravel (Breeze, UI, Fortify, etc.).
-- [ ] ABM de entradas del blog.
-
-### Requisitos generales
-
-- [ ] HTML con semántica y estructura correctas.
-- [ ] CSS personalizado (se puede usar framework CSS).
-- [ ] Vistas con **Blade**.
-- [ ] Toda entrada de datos **validada en el servidor** y con errores informados (no se pude usar validación HTML).
-- [ ] Mensaje de feedback al usuario (éxito, error, confirmación).
-- [ ] Tablas y datos iniciales creados con **migrations y seeders**.
-- [ ] POO aplicada, buenas prácticas de Laravel y **PHPDoc**.
-
----
-
-## 2. Concepto del proyecto
-
-**Nombre:** Old Ink School.
-
-**Temática:** estudio de tatuaje de estilo tradicional (old school/american traditional): líneas gruesas, paleta limitada, flashes clásicos, etc.
-
-**Servicio a contratar:** solicitud de turno para un servicio del estudio.
-
-**Blog:** cuidado post-tatuaje, guía de estilos, mitos, novedades del estudio, flashes disponibles.
-
----
-
-## 3. Mapa del sitio
+## Funcionalidades
 
 ### Sitio público
 
-| Sección             | Descripción                                                                                          |
-| ------------------- | ---------------------------------------------------------------------------------------------------- |
-| Home                | Presentación del estudio, servicios destacados, últimos posts y llamado a la acción para pedir turno |
-| Servicios           | Listado y detalle de cada servicio                                                                   |
-| Blog                | Listado paginado, detalle por slug y filtro por categoría                                            |
-| Solicitar turno     | Formulario con validaciones y feedback                                                               |
-| Nosotros / Contacto | Opcional                                                                                             |
+- Página de inicio con servicios destacados y publicaciones recientes.
+- Listado y detalle de servicios activos.
+- Blog con publicaciones paginadas, categorías y páginas de detalle por slug.
+- Formulario de solicitud de turnos con validación en el servidor y mensajes de resultado.
 
-### Admin (protegido)
+### Administración
 
-| Sección              | Descripción                                                   |
-| -------------------- | ------------------------------------------------------------- |
-| Login / logout       | Controller, vista y middleware propios                        |
-| ABM de posts         | Listar, crear, editar y eliminar                              |
-| ABM de servicios     | Extra que suma complejidad                                    |
-| Solicitudes de turno | Listado y cambio de estado (pendiente, confirmado, cancelado) |
+- Inicio y cierre de sesión propios, sin scaffolding de autenticación.
+- Panel con el contador de solicitudes pendientes.
+- ABM de publicaciones y servicios.
+- Listado, detalle, cambio de estado y eliminación de solicitudes.
+- Rutas administrativas protegidas por el middleware `auth`.
 
----
+## Tecnologías y requisitos
 
-## 4. Modelo de datos (conceptual)
+- PHP **8.3 o superior**.
+- Composer.
+- Laravel **13**.
+- MySQL.
+- Blade y CSS propio (hojas de estilo en `public/css/`).
 
-**Base de datos:** old_ink_school.
+## Instalación local
 
-| Tabla               | Campos sugeridos                                                            | Relaciones                                        |
-| ------------------- | --------------------------------------------------------------------------- | ------------------------------------------------- |
-| `users`             | id, nombre, email, password                                                 | 1:N con `posts`                                   |
-| `servicios`         | nombre, descripción, precio_base, duración_estimada, estilo, imagen, activo | 1:N con `solicitudes_turno`, N:M con `tatuadores` |
-| `posts`             | título, slug, extracto, contenido, imagen, publicado, user_id               | N:1 con `users`, N:M con `categorias`             |
-| `categorias`        | nombre, slug                                                                | N:M con `posts`                                   |
-| `categoria_post`    | post_id, categoria_id                                                       | Tabla pivote                                      |
-| `tatuadores`        | nombre, especialidad, bio, foto                                             | N:M con `servicios` (opcional)                    |
-| `servicio_tatuador` | servicio_id, tatuador_id                                                    | Tabla pivote (opcional)                           |
-| `solicitudes_turno` | servicio_id, nombre, email, teléfono, fecha_tentativa, mensaje, estado      | N:1 con `servicios`                               |
+1. Instalar dependencias:
 
-**Requisitos de la consigna que cumple:**
+    ```bash
+    composer install
+    ```
 
-- Mínimo 3 tablas: `users`, `servicios` y `posts`.
-- Al menos una tabla con 5+ campos (sin contar PK ni timestamps): `servicios` y `solicitudes_turno`.
-- tablas de relación extra (suma nota): `categoria_post` y `servicio_tatuador`.
+2. Crear el archivo de entorno y generar la clave de Laravel:
 
----
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
 
-## 5. Indentidad visual
+    En Windows PowerShell, usar `Copy-Item .env.example .env` en lugar de `cp`.
 
-### Paleta de colores
+3. Crear una base de datos MySQL llamada `apellido_nombre` o cambiar `DB_DATABASE` en `.env` para que coincida con la base creada. Configurar también las credenciales de conexión:
 
-| Rol                        | Color              | Hex       |
-| -------------------------- | ------------------ | --------- |
-| Principal (granate / vino) | Burdeos profundo   | `#6D1A2B` |
-| Acento                     | Crema envejecido   | `#F2E6D0` |
-| Fondo oscuro               | Negro tinta cálido | `#1A1416` |
-| Detalle                    | Dorado apagado     | `#C9A24B` |
-| Texto secundario           | Gris cálido        | `#8C7F7A` |
+    ```dotenv
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=apellido_nombre
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
 
-### Tipografía
+4. Crear las tablas y cargar los datos iniciales:
 
-**Titulo:** Rye.
+    ```bash
+    php artisan migrate --seed
+    ```
 
-**Cuerpo:** Source Sans 3.
+5. Iniciar el servidor de desarrollo:
 
-| Rol    | Nombre        |
-| ------ | ------------- |
-| Titulo | Rye          |
-| Cuerpo | Source Sans 3 |
+    ```bash
+    php artisan serve
+    ```
 
----
+    Abrir <http://127.0.0.1:8000>.
 
-## 6. Rutas previstas
+El seeder crea un usuario administrador de demostración:
 
-### Públicas
+- **Correo:** `valetin.tito@davinci.du.ar`
+- **Contraseña:** `tito_valentin`
 
-| Método | URI                      | Descripción          |
-| ------ | ------------------------ | -------------------- |
-| GET    | `/`                      | Home                 |
-| GET    | `/servicios`             | Listado de servicios |
-| GET    | `/servicios/{id}`        | Detalle de servicio  |
-| GET    | `/blog`                  | Listado de posts     |
-| GET    | `/blog/categoria/{slug}` | Posts por categoría  |
-| GET    | `/blog/{slug}`           | Detalle de post      |
-| GET    | `/turnos/solicitar`      | Formulario de turno  |
-| POST   | `/turnos`                | Enviar solicitud     |
+Estas credenciales son solo para desarrollo local. Cambiarlas antes de desplegar o exponer la aplicación.
 
-### Admin
+## Pruebas
 
-| Método | URI                  | Descripción                             |
-| ------ | -------------------- | --------------------------------------- |
-| GET    | `/admin/login`       | Formulario de login                     |
-| POST   | `/admin/login`       | Autenticar                              |
-| POST   | `/admin/logout`      | Cerrar sesión                           |
-| —      | `/admin/posts`       | ABM de posts (protegido por middleware) |
-| —      | `/admin/servicios`   | ABM de servicios (protegido)            |
-| —      | `/admin/solicitudes` | Gestión de solicitudes (protegido)      |
+Ejecutar la suite con:
 
----
+```bash
+php artisan test
+```
 
-## 7. Buenas prácticas a aplicar
+Las pruebas usan SQLite en memoria y cubren la disponibilidad de la página principal, el login, el logout, la vista de publicaciones por slug y el envío de solicitudes de turno.
 
-- **Form Requests** para las validaciones.
-- **Middleware propio** para proteger el admin.
-- Lógica de negocio fuera de los controllers (**Principio de Responsabilidad Única**).
-- **Route model binding** y slugs en las URLs del blog.
-- Estados de publicación (borrador / publicado) en los posts.
-- **Eloquent** con relaciones bien definidas.
-- **PHPDoc** en clases y métodos desde el inicio.
-- Nombres coherentes de variables, clases y métodos.
-- HTML semántico: `header`, `nav`, `main`, `section`, `article`, `figure`, `footer`.
-- Carpeta del proyecto prolija.
+## Rutas principales
 
----
+| Método | URL                      | Descripción                                              |
+| ------ | ------------------------ | -------------------------------------------------------- |
+| `GET`  | `/`                      | Inicio                                                   |
+| `GET`  | `/servicios`             | Listado de servicios                                     |
+| `GET`  | `/servicios/{id}`        | Detalle de servicio                                      |
+| `GET`  | `/blog`                  | Publicaciones                                            |
+| `GET`  | `/blog/categoria/{slug}` | Publicaciones por categoría                              |
+| `GET`  | `/blog/{slug}`           | Detalle de publicación                                   |
+| `GET`  | `/turnos/solicitar`      | Formulario de solicitud                                  |
+| `POST` | `/turnos`                | Envío de solicitud                                       |
+| `GET`  | `/admin/login`           | Login administrativo                                     |
+| `POST` | `/admin/login`           | Autenticación                                            |
+| `POST` | `/admin/logout`          | Cierre de sesión                                         |
+| `GET`  | `/admin/dashboard`       | Panel (requiere autenticación)                           |
+| —      | `/admin/posts`           | Administración de publicaciones (requiere autenticación) |
+| —      | `/admin/services`        | Administración de servicios (requiere autenticación)     |
+| —      | `/admin/appointments`    | Gestión de solicitudes (requiere autenticación)          |
 
-## 8. Uso de IA
+## Estructura de datos
 
-La consigna **no permite** desarrollar la entrega con modelos generativos. Solo se admite un uso limitado en partes que no son el foco (diseño, estructura semántica). El alumno debe poder:
+Las tablas y sus relaciones se crean mediante migrations; los datos de ejemplo se cargan mediante seeders.
 
-- Responder preguntas sobre el código y las funciones.
-- Justificar las decisiones de diseño e implementación.
-- Explicar la teoría de la materia y de materias relacionadas (HTML, CSS).
+| Tabla               | Propósito                                 |
+| ------------------- | ----------------------------------------- |
+| `usuarios`          | Cuentas administrativas                   |
+| `servicios`         | Servicios ofrecidos por el estudio        |
+| `posts`             | Publicaciones del blog                    |
+| `categorias`        | Categorías del blog                       |
+| `categoria_post`    | Relación entre publicaciones y categorías |
+| `tatuadores`        | Perfiles de tatuadores                    |
+| `servicio_tatuador` | Relación entre servicios y tatuadores     |
+| `solicitudes_turno` | Solicitudes y estado de cada turno        |
 
----
+Para recrear la base de datos desde cero durante el desarrollo se puede ejecutar `php artisan migrate:fresh --seed`. **Este comando elimina todos los datos existentes** en la base configurada.
 
-## 9. Modalidad de entrega
+## Diseño
 
-- Archivo: `apellido-nombre.zip` (o `.rar`), por ejemplo `perez-juan.zip`.
-- Debe contener el **proyecto completo** y un archivo `datos.txt` con:
-    - Carrera
-    - Materia
-    - Cuatrimestre
-    - Año
-    - Turno
-    - Comisión
-    - Apellido y nombre
-    - Docente
-    - Carácter de entrega: **1er parcial**
-- El incumplimiento de las condiciones de entrega puede restar **al menos 1 punto**.
-- Puede haber preguntas orales o teóricas para aprobar.
+La interfaz utiliza la tipografía Rye para títulos y Source Sans 3 para el cuerpo, junto con una paleta inspirada en la estética tradicional del estudio. Las fuentes se cargan desde Google Fonts.
