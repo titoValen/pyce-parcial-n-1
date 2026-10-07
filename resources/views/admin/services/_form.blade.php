@@ -18,20 +18,20 @@
     <div class="admin-form-field">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre" value="{{ old('nombre', $service->nombre) }}"
-            maxlength="255" required>
+            maxlength="255">
         @error('nombre')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="descripcion">Descripción</label>
-        <textarea id="descripcion" name="descripcion" rows="6" required>{{ old('descripcion', $service->descripcion) }}</textarea>
+        <textarea id="descripcion" name="descripcion" rows="6">{{ old('descripcion', $service->descripcion) }}</textarea>
         @error('descripcion')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="precio_base">Precio base</label>
         <input type="number" id="precio_base" name="precio_base" value="{{ old('precio_base', $service->precio_base) }}"
-            min="0" step="0.01" required>
+            min="0" step="0.01">
         @error('precio_base')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
@@ -39,14 +39,14 @@
         <label for="duracion_estimada">Duración estimada</label>
         <input type="time" id="duracion_estimada" name="duracion_estimada"
             value="{{ substr((string) old('duracion_estimada', $service->duracion_estimada), 0, 5) }}"
-            step="60" required>
+            step="60">
         @error('duracion_estimada')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="estilo">Estilo</label>
         <input type="text" id="estilo" name="estilo" value="{{ old('estilo', $service->estilo) }}"
-            maxlength="255" required>
+            maxlength="255">
         @error('estilo')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 

@@ -20,7 +20,7 @@
 
             <div class="form-group form-group-wide">
                 <label for="servicio_id">Servicio</label>
-                <select name="servicio_id" id="servicio_id" required>
+                <select name="servicio_id" id="servicio_id">
                     <option value="">Selecciona un servicio</option>
                     @foreach ($services as $service)
                         <option value="{{ $service->id }}" @selected(old('servicio_id') == $service->id)>
@@ -33,22 +33,22 @@
             <div class="form-group">
                 <label for="fecha_tentativa">Fecha y hora</label>
                 <input type="datetime-local" name="fecha_tentativa" id="fecha_tentativa"
-                    value="{{ old('fecha_tentativa') }}" required>
+                    value="{{ old('fecha_tentativa') }}">
             </div>
 
             <div class="form-group">
                 <label for="nombre">Nombre completo</label>
-                <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}" required>
+                <input type="text" name="nombre" id="nombre" value="{{ old('nombre') }}">
             </div>
 
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                <input type="email" name="email" id="email" value="{{ old('email') }}">
             </div>
 
             <div class="form-group">
                 <label for="telefono">Teléfono</label>
-                <input type="tel" name="telefono" id="telefono" value="{{ old('telefono') }}" required>
+                <input type="tel" name="telefono" id="telefono" value="{{ old('telefono') }}">
             </div>
 
             <div class="form-group form-group-wide">

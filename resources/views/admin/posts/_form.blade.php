@@ -17,28 +17,27 @@
 
     <div class="admin-form-field">
         <label for="titulo">Título</label>
-        <input type="text" id="titulo" name="titulo" value="{{ old('titulo', $post->titulo) }}" maxlength="255"
-            required>
+        <input type="text" id="titulo" name="titulo" value="{{ old('titulo', $post->titulo) }}" maxlength="255">
         @error('titulo')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="slug">Slug</label>
         <input type="text" id="slug" name="slug" value="{{ old('slug', $post->slug) }}" maxlength="255"
-            pattern="[A-Za-z0-9_-]+" aria-describedby="slug-help" required>
+            pattern="[A-Za-z0-9_-]+" aria-describedby="slug-help">
         <small id="slug-help">Usa letras, números, guiones o guiones bajos; debe ser único.</small>
         @error('slug')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="extracto">Extracto</label>
-        <textarea id="extracto" name="extracto" rows="3" maxlength="255" required>{{ old('extracto', $post->extracto) }}</textarea>
+        <textarea id="extracto" name="extracto" rows="3" maxlength="255">{{ old('extracto', $post->extracto) }}</textarea>
         @error('extracto')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
     <div class="admin-form-field">
         <label for="contenido">Contenido</label>
-        <textarea id="contenido" name="contenido" rows="12" required>{{ old('contenido', $post->contenido) }}</textarea>
+        <textarea id="contenido" name="contenido" rows="12">{{ old('contenido', $post->contenido) }}</textarea>
         @error('contenido')<span class="admin-field-error">{{ $message }}</span>@enderror
     </div>
 
