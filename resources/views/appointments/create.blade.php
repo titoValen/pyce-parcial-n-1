@@ -9,7 +9,7 @@
         <form action="{{ route('appointments.store') }}" method="POST">
             @csrf
             @if ($errors->any())
-                <div role="alert">
+                <div class="appointment-errors" role="alert">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -18,7 +18,7 @@
                 </div>
             @endif
 
-            <div class="form-group">
+            <div class="form-group form-group-wide">
                 <label for="servicio_id">Servicio</label>
                 <select name="servicio_id" id="servicio_id" required>
                     <option value="">Selecciona un servicio</option>
@@ -51,12 +51,12 @@
                 <input type="tel" name="telefono" id="telefono" value="{{ old('telefono') }}" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group form-group-wide">
                 <label for="mensaje">Mensaje (opcional)</label>
                 <textarea name="mensaje" id="mensaje">{{ old('mensaje') }}</textarea>
             </div>
 
-            <button type="submit">Agendar cita</button>
+            <button class="button button-primary appointment-submit" type="submit">Agendar cita</button>
         </form>
     </section>
 
