@@ -45,7 +45,10 @@ class AppointmentController extends Controller
             'mensaje.max' => 'El mensaje no puede superar los :max caracteres.',
         ]);
 
-        AppointmentRequest::create($validated);
+        AppointmentRequest::create([
+            ...$validated,
+            'estado' => AppointmentRequest::PENDIENTE,
+        ]);
 
         return redirect(url('/'))
             ->with('success', 'Solicitud de cita enviada correctamente. Nos pondremos en contacto contigo pronto.');
