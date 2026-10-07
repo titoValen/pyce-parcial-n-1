@@ -5,8 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Crea las categorías iniciales del blog.
+ */
 class CategorySeeder extends Seeder
 {
+    /**
+     * Inserta las categorías disponibles.
+     */
     public function run(): void
     {
         DB::table('categorias')->insert([

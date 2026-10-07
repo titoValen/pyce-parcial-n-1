@@ -8,10 +8,13 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use RuntimeException;
 
+/**
+ * Crea solicitudes de turno de ejemplo asociadas a servicios existentes.
+ */
 class AppointmentRequestSeeder extends Seeder
 {
     /**
-     * Crea solicitudes de ejemplo asociadas a servicios por su nombre.
+     * Siembra solicitudes de ejemplo asociadas a servicios por su nombre.
      */
     public function run(): void
     {

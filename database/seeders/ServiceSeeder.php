@@ -5,8 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Crea el catálogo inicial de servicios del estudio.
+ */
 class ServiceSeeder extends Seeder
 {
+    /**
+     * Inserta los servicios de ejemplo.
+     */
     public function run(): void
     {
         DB::table('servicios')->insert([

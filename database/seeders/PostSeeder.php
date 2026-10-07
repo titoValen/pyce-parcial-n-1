@@ -7,8 +7,14 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
+/**
+ * Crea las publicaciones iniciales y sus categorías.
+ */
 class PostSeeder extends Seeder
 {
+    /**
+     * Inserta publicaciones de ejemplo relacionadas con categorías existentes.
+     */
     public function run(): void
     {
         $autor = User::first();

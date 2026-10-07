@@ -6,8 +6,14 @@ use App\Models\TattooArtist;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Crea los perfiles iniciales de tatuadores.
+ */
 class TattooArtistSeeder extends Seeder
 {
+    /**
+     * Inserta los tatuadores de ejemplo.
+     */
     public function run(): void
     {
         DB::table('tatuadores')->insert([

@@ -6,8 +6,14 @@ use App\Models\Service;
 use App\Models\TattooArtist;
 use Illuminate\Database\Seeder;
 
+/**
+ * Asocia los tatuadores con los servicios que ofrecen.
+ */
 class TattooArtistServiceSeeder extends Seeder
 {
+    /**
+     * Crea las relaciones iniciales entre tatuadores y servicios.
+     */
     public function run(): void
     {
         $servicio = Service::pluck('id', 'nombre');
