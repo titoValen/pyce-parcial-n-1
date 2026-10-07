@@ -55,6 +55,14 @@
   font-size: 0.95rem;
 }
 
+.site-nav-logout {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
 .site-nav-link::after {
   position: absolute;
   right: 0;
