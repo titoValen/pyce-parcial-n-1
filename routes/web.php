@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\PostController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -40,6 +41,13 @@ Route::post('/admin/logout', [AuthController::class, 'logout'])
 Route::post('/admin/login', [AuthController::class, 'loginProcess'])
     ->name('admin.login');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth')->name('admin.dashboard');
+Route::middleware('auth')
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        Route::resource('posts', PostController::class)->except('show');
+    });
