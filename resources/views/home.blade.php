@@ -45,6 +45,7 @@
                     <p class="eyebrow">{{ $service->estilo ?: 'Servicio de tatuaje' }}</p>
                     <h3>{{ $service->nombre }}</h3>
                     <p class="card-copy">{{ \Illuminate\Support\Str::limit($service->descripcion, 135) }}</p>
+                    <p class="service-card-meta">{{ $service->precio_formateado }} · {{ $service->duracion_legible }}</p>
                     <a class="text-link" href="{{ route('services.show', $service->id) }}">Ver servicio <span
                             aria-hidden="true">-&gt;</span></a>
                 </article>
