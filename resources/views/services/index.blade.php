@@ -29,7 +29,9 @@
                 </div>
                 <div class="service-row-meta">
                     <span class="meta-label">Precio base</span>
-                    <strong>{{ (float) $service->precio_base <= 0 ? 'Sin cargo' : '$' . number_format((float) $service->precio_base, 0, ',', '.') }}</strong>
+                    <strong>{{ $service->precio_formateado }}</strong>
+                    <span class="meta-label">Duración estimada</span>
+                    <span>{{ $service->duracion_legible }}</span>
                     <a class="text-link" href="{{ route('services.show', $service->id) }}">Ver detalles <span
                             aria-hidden="true">-&gt;</span></a>
                 </div>

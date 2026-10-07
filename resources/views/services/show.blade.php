@@ -18,12 +18,12 @@
                 <dl class="service-facts">
                     <div>
                         <dt>Precio base</dt>
-                        <dd>{{ (float) $service->precio_base <= 0 ? 'Sin cargo' : '$' . number_format((float) $service->precio_base, 0, ',', '.') }}
+                        <dd>{{ $service->precio_formateado }}
                         </dd>
                     </div>
                     <div>
                         <dt>Duración estimada</dt>
-                        <dd>{{ \Illuminate\Support\Carbon::parse($service->duracion_estimada)->format('G\h i\m') }}</dd>
+                        <dd>{{ $service->duracion_legible }}</dd>
                     </div>
                 </dl>
             </div>
