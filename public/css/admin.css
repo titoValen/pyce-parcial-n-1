@@ -104,6 +104,10 @@
   color: var(--color-accent);
 }
 
+.admin-flash-error {
+  border-left-color: #9b382d;
+}
+
 .admin-page {
   padding: 4rem 0 1rem;
 }
