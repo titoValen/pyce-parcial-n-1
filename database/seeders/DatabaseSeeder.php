@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             ServiceSeeder::class,
+            AppointmentRequestSeeder::class,
             TattooArtistSeeder::class,
             PostSeeder::class,
 
