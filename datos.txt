@@ -1,0 +1,9 @@
+Carrera: Diseño y Desarrollo web
+Materia: Portales y Comercio Electrónico
+Cuatrimestre: Cuarto
+Año: 2026
+Turno: Tarde
+Comisión: AP
+Apellido y nombre: Tito Valentín
+Docente: Gallino Santiago
+Carácter de entrega: 1er parcial
