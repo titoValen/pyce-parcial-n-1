@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Table;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 #[Table("servicios")]
 class Service extends Model
@@ -28,5 +29,19 @@ class Service extends Model
             "servicio_id",
             "tatuador_id"
         );
+    }
+
+    public function getPrecioFormateadoAttribute(): string
+    {
+        return (float) $this->precio_base <= 0
+            ? 'Sin cargo'
+            : '$' . number_format((float) $this->precio_base, 0, ',', '.');
+    }
+
+    public function getDuracionLegibleAttribute(): string
+    {
+        $duration = Carbon::parse($this->duracion_estimada);
+
+        return $duration->format('G\h i\m');
     }
 }
