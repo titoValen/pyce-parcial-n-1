@@ -39,7 +39,7 @@
                 </a>
                 <a class="site-nav-link {{ request()->routeIs('services*') ? 'is-active' : '' }}"
                     href="{{ route('services.index') }}">Servicios</a>
-                <a class="site-nav-link {{ request()->routeIs('blog', 'blog.category', 'blog.show') ? 'is-active' : '' }}"
+                <a class="site-nav-link {{ request()->routeIs('blog.index', 'blog.category', 'blog.show') ? 'is-active' : '' }}"
                     href="{{ route('blog.index') }}">Blog</a>
                 <a class="site-nav-link {{ request()->routeIs('appointments*') ? 'is-active' : '' }}"
                     href="{{ route('appointments.create') }}">Turnos</a>
@@ -61,6 +61,12 @@
     </header>
 
     <main id="main-content" class="site-main">
+        @if (session('success'))
+            <div class="admin-flash" role="status">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="admin-flash admin-flash-error" role="alert">{{ session('error') }}</div>
+        @endif
         {{ $slot }}
     </main>
 
