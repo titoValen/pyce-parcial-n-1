@@ -1,13 +1,14 @@
 <x-layout.app :title="$service->nombre">
     <article class="detail-page">
-        <a class="back-link" href="{{ route('services') }}">&lt;- Todos los servicios</a>
+        <a class="back-link" href="{{ route('services.index') }}">&lt;- Todos los servicios</a>
         @if ($service->imagen)
             @php
                 $serviceImage = \Illuminate\Support\Str::startsWith($service->imagen, ['http://', 'https://', '/'])
                     ? $service->imagen
                     : \Illuminate\Support\Facades\Storage::url($service->imagen);
             @endphp
-            <figure class="article-image service-detail-image"><img src="{{ $serviceImage }}" alt="{{ $service->nombre }}"></figure>
+            <figure class="article-image service-detail-image"><img src="{{ $serviceImage }}" alt="{{ $service->nombre }}">
+            </figure>
         @endif
         <div class="detail-layout">
             <div class="detail-copy">
@@ -17,7 +18,8 @@
                 <dl class="service-facts">
                     <div>
                         <dt>Precio base</dt>
-                        <dd>{{ (float) $service->precio_base <= 0 ? 'Sin cargo' : '$' . number_format((float) $service->precio_base, 0, ',', '.') }}</dd>
+                        <dd>{{ (float) $service->precio_base <= 0 ? 'Sin cargo' : '$' . number_format((float) $service->precio_base, 0, ',', '.') }}
+                        </dd>
                     </div>
                     <div>
                         <dt>Duración estimada</dt>
@@ -37,7 +39,7 @@
                         @endforeach
                     </ul>
                 @endif
-                <a class="button button-outline" href="{{ route('services') }}">Ver otros servicios</a>
+                <a class="button button-outline" href="{{ route('services.index') }}">Ver otros servicios</a>
             </aside>
         </div>
     </article>

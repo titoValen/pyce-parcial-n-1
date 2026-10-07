@@ -8,11 +8,16 @@
     <section class="service-list" aria-label="Servicios disponibles">
         @forelse ($services as $service)
             <article class="service-row">
-                <div class="service-row-number" aria-hidden="true">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
+                <div class="service-row-number" aria-hidden="true">
+                    {{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</div>
                 <div class="service-row-copy">
                     @if ($service->imagen)
                         @php
-                            $serviceImage = \Illuminate\Support\Str::startsWith($service->imagen, ['http://', 'https://', '/'])
+                            $serviceImage = \Illuminate\Support\Str::startsWith($service->imagen, [
+                                'http://',
+                                'https://',
+                                '/',
+                            ])
                                 ? $service->imagen
                                 : \Illuminate\Support\Facades\Storage::url($service->imagen);
                         @endphp
@@ -25,7 +30,8 @@
                 <div class="service-row-meta">
                     <span class="meta-label">Precio base</span>
                     <strong>{{ (float) $service->precio_base <= 0 ? 'Sin cargo' : '$' . number_format((float) $service->precio_base, 0, ',', '.') }}</strong>
-                    <a class="text-link" href="{{ route('services.show', $service->id) }}">Ver detalles <span aria-hidden="true">-&gt;</span></a>
+                    <a class="text-link" href="{{ route('services.show', $service->id) }}">Ver detalles <span
+                            aria-hidden="true">-&gt;</span></a>
                 </div>
             </article>
         @empty
