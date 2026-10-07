@@ -29,8 +29,8 @@
                     href="{{ route('admin.posts.index') }}">Posts</a>
                 <a class="site-nav-link {{ request()->routeIs('admin.services.*') ? 'is-active' : '' }}"
                     href="{{ route('admin.services.index') }}">Servicios</a>
-                <span class="site-nav-link admin-nav-disabled" aria-disabled="true"
-                    title="Sección todavía no disponible">Solicitudes</span>
+                <a class="site-nav-link {{ request()->routeIs('admin.appointments.*') ? 'is-active' : '' }}"
+                    href="{{ route('admin.appointments.index') }}">Solicitudes</a>
                 <span class="admin-user-name">{{ auth()->user()->nombre }}</span>
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf
