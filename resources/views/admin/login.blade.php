@@ -5,6 +5,10 @@
             <h1 id="login-title">Inicio de sesión</h1>
             <p class="auth-description">Ingresa tus datos para continuar al panel del estudio.</p>
 
+            @if (session('success'))
+                <div class="auth-alert" role="status">{{ session('success') }}</div>
+            @endif
+
             @if (session('error'))
                 <div class="auth-alert" role="alert">{{ session('error') }}</div>
             @endif
@@ -30,7 +34,6 @@
                         id="email"
                         value="{{ old('email') }}"
                         autocomplete="username"
-                        required
                         autofocus
                     >
                 </div>
@@ -42,7 +45,6 @@
                         name="password"
                         id="password"
                         autocomplete="current-password"
-                        required
                     >
                 </div>
 
