@@ -7,6 +7,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
@@ -50,4 +51,5 @@ Route::middleware('auth')
         })->name('dashboard');
 
         Route::resource('posts', PostController::class)->except('show');
+        Route::resource('services', AdminServiceController::class)->except('show');
     });
