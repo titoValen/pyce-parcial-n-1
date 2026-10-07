@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\View\View;
 
+/**
+ * Presenta las publicaciones públicas del blog.
+ */
 class BlogController extends Controller
 {
+    /**
+     * Lista las publicaciones visibles y sus categorías.
+     */
     public function index(): View
     {
         $posts = Post::where('publicado', true)
@@ -21,6 +27,11 @@ class BlogController extends Controller
         ]);
     }
 
+    /**
+     * Lista las publicaciones visibles de una categoría.
+     *
+     * @param Category $category Categoría identificada por su slug.
+     */
     public function category(Category $category): View
     {
         $posts = $category->posts()
@@ -36,15 +47,17 @@ class BlogController extends Controller
         ]);
     }
 
-    public function show(int $id): View
+    /**
+     * Muestra una publicación visible identificada por su slug.
+     *
+     * @param Post $post Publicación resuelta desde la ruta.
+     */
+    public function show(Post $post): View
     {
-        $posts = Post::where('publicado', true)
-            ->with('categories')
-            ->findOrFail($id);
-
+        abort_unless($post->publicado, 404);
 
         return view('blog.show', [
-            'post' => $posts,
+            'post' => $post->load('categories'),
         ]);
     }
 }

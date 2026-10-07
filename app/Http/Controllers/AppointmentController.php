@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\AppointmentRequest;
 use App\Models\Service;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
+/**
+ * Gestiona las solicitudes de turnos del sitio público.
+ */
 class AppointmentController extends Controller
 {
-    public function create()
+    /**
+     * Muestra el formulario con los servicios disponibles.
+     */
+    public function create(): View
     {
         $services = Service::where('activo', true)->get();
 
@@ -17,7 +25,10 @@ class AppointmentController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    /**
+     * Valida y registra una solicitud de turno.
+     */
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'servicio_id' => 'required|exists:servicios,id',

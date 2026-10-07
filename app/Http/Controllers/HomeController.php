@@ -6,13 +6,12 @@ use App\Models\Post;
 use App\Models\Service;
 use Illuminate\View\View;
 /**
- * Muestra la página de inicio del sitio
+ * Muestra la página de inicio del sitio.
  */
 class HomeController extends Controller
 {
     /**
-     * Presenta el estudio con los servicios destacados
-     * @return View
+     * Presenta el estudio con los servicios y publicaciones destacados.
      */
     public function index(): View
     {

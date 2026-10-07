@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\View\View;
 
+/**
+ * Presenta los servicios disponibles para los visitantes.
+ */
 class ServiceController extends Controller
 {
     /**
-     * Muestra la lista de servicios que están activos y sus artistas de tatuajes asociados.
-     * @return View
+     * Muestra los servicios activos y sus tatuadores asociados.
      */
     public function index(): View
     {
@@ -23,9 +25,9 @@ class ServiceController extends Controller
     }
 
     /**
-     * Muestra los detalles de un servicio específico que está activo y sus artistas de tatuajes asociados.
-     * @param int $id
-     * @return View
+     * Muestra un servicio activo y sus tatuadores asociados.
+     *
+     * @param int $id Identificador del servicio.
      */
     public function show(int $id): View
     {
