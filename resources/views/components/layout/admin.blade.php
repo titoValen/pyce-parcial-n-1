@@ -27,8 +27,8 @@
             <nav class="site-nav admin-nav" aria-label="Navegación de administración">
                 <a class="site-nav-link {{ request()->routeIs('admin.posts.*') ? 'is-active' : '' }}"
                     href="{{ route('admin.posts.index') }}">Posts</a>
-                <span class="site-nav-link admin-nav-disabled" aria-disabled="true"
-                    title="Sección todavía no disponible">Servicios</span>
+                <a class="site-nav-link {{ request()->routeIs('admin.services.*') ? 'is-active' : '' }}"
+                    href="{{ route('admin.services.index') }}">Servicios</a>
                 <span class="site-nav-link admin-nav-disabled" aria-disabled="true"
                     title="Sección todavía no disponible">Solicitudes</span>
                 <span class="admin-user-name">{{ auth()->user()->nombre }}</span>
@@ -43,6 +43,9 @@
     <main id="main-content" class="site-main">
         @if (session('success'))
             <div class="admin-flash" role="status">{{ session('success') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="admin-flash admin-flash-error" role="alert">{{ session('error') }}</div>
         @endif
         {{ $slot }}
     </main>
