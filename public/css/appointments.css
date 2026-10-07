@@ -1,0 +1,106 @@
+.appointment-form {
+  width: min(100%, 850px);
+  margin: 0 auto;
+  padding: 2.5rem 0 1rem;
+}
+
+.appointment-form form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem 1.5rem;
+}
+
+.appointment-form input[type="hidden"] {
+  display: none;
+}
+
+.appointment-form .form-group {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.appointment-form .form-group-wide,
+.appointment-errors {
+  grid-column: 1 / -1;
+}
+
+.appointment-form label {
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.appointment-form input,
+.appointment-form select,
+.appointment-form textarea {
+  width: 100%;
+  min-height: 50px;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-line);
+  border-radius: 0;
+  background: var(--color-surface);
+  color: var(--color-accent);
+  font: inherit;
+  color-scheme: dark;
+}
+
+.appointment-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.appointment-form input:focus-visible,
+.appointment-form select:focus-visible,
+.appointment-form textarea:focus-visible {
+  border-color: var(--color-detail);
+  outline: 2px solid var(--color-detail);
+  outline-offset: 2px;
+}
+
+.appointment-form input::placeholder,
+.appointment-form textarea::placeholder {
+  color: var(--color-muted);
+}
+
+.appointment-errors {
+  padding: 0.9rem 1rem;
+  border-left: 3px solid var(--color-primary-light);
+  background: var(--color-surface-raised);
+  color: var(--color-accent);
+}
+
+.appointment-errors ul {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.2rem;
+}
+
+.appointment-submit {
+  min-width: 190px;
+  justify-self: start;
+  align-self: start;
+  cursor: pointer;
+  font: inherit;
+}
+
+@media (max-width: 600px) {
+  .appointment-form {
+    padding-top: 1.75rem;
+  }
+
+  .appointment-form form {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .appointment-form .form-group-wide,
+  .appointment-errors {
+    grid-column: auto;
+  }
+
+  .appointment-submit {
+    width: 100%;
+  }
+}
