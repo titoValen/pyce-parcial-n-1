@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Table;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 #[Table("usuarios")]
-class User extends Model
+class User extends Authenticatable
 {
     protected $primaryKey = "id";
     protected $fillable = ["nombre", "email","password"];
